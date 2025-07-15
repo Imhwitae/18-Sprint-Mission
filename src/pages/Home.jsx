@@ -1,37 +1,35 @@
 import '../style/style.css';
+import home_top from '../assets/images/Img_home_top.png';
+import hot_item from '../assets/images/hot_item.png';
+import search_img from '../assets/images/search.png';
+import register_img from '../assets/images/register.png';
+import home_bottom from '../assets/images/Img_home_bottom.png';
+import { Link } from 'react-router';
 
 export default function Home() {
   return (
     <>
       <main>
-        <div className="plan_card">
+        <div className="plan-card">
           <div className="slogan">
-            <p className="slogan_heading">
-              일상의 모든 물건을 <br className="only_pc only_mobile" />
+            <p className="slogan-heading">
+              일상의 모든 물건을 <br className="only-pc only-mobile" />
               거래해보세요
             </p>
-            <button className="large_btn">
-              <a href="items.html">구경하러 가기</a>
-            </button>
+            <Link to="items">
+              <button className="large-btn">구경하러 가기</button>
+            </Link>
           </div>
-          <img
-            className="main_img"
-            src="images/Img_home_top.png"
-            alt="main_img"
-          />
+          <img className="main-img" src={home_top} alt="main_img" />
         </div>
 
         <div className="container">
-          <div className="content_box">
-            <img
-              className="introduce_img"
-              src="images/hot_item.png"
-              alt="hot_item"
-            />
+          <div className="content-box">
+            <img className="introduce-img" src={hot_item} alt="hot_item" />
             <div className="introduce">
               <p className="keyword">Hot item</p>
-              <p className="menu_heading">
-                인기 상품을 <br className="only_pc" />
+              <p className="menu-heading">
+                인기 상품을 <br className="only-pc" />
                 확인해 보세요
               </p>
               <h2>
@@ -43,11 +41,11 @@ export default function Home() {
         </div>
 
         <div className="container">
-          <div className="content_box">
-            <div className="sec_introduce">
+          <div className="content-box">
+            <div className="sec-introduce">
               <p className="keyword">Search</p>
-              <p className="menu_heading">
-                구매를 원하는 <br className="only_pc" />
+              <p className="menu-heading">
+                구매를 원하는 <br className="only-pc" />
                 상품을 검색하세요
               </p>
               <h2>
@@ -55,25 +53,17 @@ export default function Home() {
                 쉽게 찾아보세요
               </h2>
             </div>
-            <img
-              className="introduce_img"
-              src="images/search.png"
-              alt="search"
-            />
+            <img className="introduce-img" src={search_img} alt="search" />
           </div>
         </div>
 
         <div className="container">
-          <div className="content_box">
-            <img
-              className="introduce_img"
-              src="images/register.png"
-              alt="register"
-            />
+          <div className="content-box">
+            <img className="introduce-img" src={register_img} alt="register" />
             <div className="introduce">
               <p className="keyword">Register</p>
-              <p className="menu_heading">
-                판매를 원하는 <br className="only_pc" />
+              <p className="menu-heading">
+                판매를 원하는 <br className="only-pc" />
                 상품을 등록하세요
               </p>
               <h2>
@@ -82,6 +72,16 @@ export default function Home() {
               </h2>
             </div>
           </div>
+        </div>
+
+        <div class="bottom">
+          <div class="bottom-slogan">
+            <p class="slogan-heading">
+              믿을 수 있는 <br />
+              판다마켓 중고 거래
+            </p>
+          </div>
+          <img src={home_bottom} alt="bottom_img" />
         </div>
       </main>
     </>
