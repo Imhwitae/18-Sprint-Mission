@@ -11,7 +11,7 @@ function App() {
       <Routes>
         {/* 메인 화면 */}
 
-        <Route index element={<Home />} />
+        <Route index path="/" element={<Home />} />
       </Routes>
       <Footer />
 

@@ -1,16 +1,25 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import logo_img from '../assets/images/logo_sm.png';
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
     <>
       <header>
         <div className="logo">
-          {/* <a href="/">
-            <div class="logo_img"></div>
-          </a> */}
-          <Link to={'/'} />
-          <button class="login_btn">
-            <a href="login.html">로그인</a>
+          <div className="logo-img">
+            <Link to="/">
+              <img src={logo_img} alt="로고" />
+            </Link>
+          </div>
+          <button
+            class="login-btn"
+            onClick={() => {
+              navigate('/login');
+            }}
+          >
+            로그인
           </button>
         </div>
       </header>
