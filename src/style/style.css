@@ -68,7 +68,7 @@ button {
   height: 66px;
 }
 
-.login-btn {
+.header-login-btn {
   width: 128px;
   height: 48px;
   background-color: var(--blue);
@@ -85,6 +85,14 @@ button {
 
 .login-btn:active {
   background-color: #1251aa;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
 }
 
 .plan-card {
@@ -126,7 +134,7 @@ button {
   height: 340px;
 }
 
-.container {
+.home-container {
   height: 720px;
   display: flex;
   justify-content: center;
@@ -263,7 +271,7 @@ button {
     display: none;
   }
 
-  .container {
+  .home-container {
     height: 800px;
   }
 
@@ -365,7 +373,7 @@ button {
     height: 51px;
   }
 
-  .container {
+  .home-container {
     height: 480px;
   }
 

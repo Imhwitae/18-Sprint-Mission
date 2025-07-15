@@ -1,4 +1,4 @@
-import '../style/style.css';
+// import '../style/style.css';
 import home_top from '../assets/images/Img_home_top.png';
 import hot_item from '../assets/images/hot_item.png';
 import search_img from '../assets/images/search.png';
@@ -9,7 +9,7 @@ import { Link } from 'react-router';
 export default function Home() {
   return (
     <>
-      <main>
+      <div className="main-contianer">
         <div className="plan-card">
           <div className="slogan">
             <p className="slogan-heading">
@@ -23,7 +23,7 @@ export default function Home() {
           <img className="main-img" src={home_top} alt="main_img" />
         </div>
 
-        <div className="container">
+        <div className="home-container">
           <div className="content-box">
             <img className="introduce-img" src={hot_item} alt="hot_item" />
             <div className="introduce">
@@ -40,7 +40,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container">
+        <div className="home-container">
           <div className="content-box">
             <div className="sec-introduce">
               <p className="keyword">Search</p>
@@ -57,7 +57,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container">
+        <div className="home-container">
           <div className="content-box">
             <img className="introduce-img" src={register_img} alt="register" />
             <div className="introduce">
@@ -74,16 +74,16 @@ export default function Home() {
           </div>
         </div>
 
-        <div class="bottom">
-          <div class="bottom-slogan">
-            <p class="slogan-heading">
+        <div className="bottom">
+          <div className="bottom-slogan">
+            <p className="slogan-heading">
               믿을 수 있는 <br />
               판다마켓 중고 거래
             </p>
           </div>
           <img src={home_bottom} alt="bottom_img" />
         </div>
-      </main>
+      </div>
     </>
   );
 }

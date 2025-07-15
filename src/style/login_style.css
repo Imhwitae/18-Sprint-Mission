@@ -16,7 +16,7 @@ body {
   margin: 0 auto;
 }
 
-main {
+.auth-main-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,19 +24,19 @@ main {
   height: 100vh;
 }
 
-.basic_p {
+.basic-p {
   font-size: 18px;
   font-weight: 700;
 }
 
-.form_box {
+.form-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
 }
 
-.input_box {
+.input-box {
   width: 100%;
   height: 56px;
   border-radius: 12px;
@@ -52,7 +52,7 @@ input::placeholder {
   color: var(--gray400);
 }
 
-button {
+.auth-login-btn {
   width: 100%;
   height: 56px;
   border: none;
@@ -64,7 +64,7 @@ button {
   font-weight: 600;
 }
 
-.btn_active {
+.btn-active {
   background-color: var(--blue);
   cursor: pointer;
 }
@@ -78,13 +78,13 @@ button {
   margin: 0 auto;
 }
 
-.login_logo {
+.login-logo {
   text-align: center;
   margin: 0 auto;
 }
 
-.logo_img {
-  background-image: url('../images/logo_lg.png');
+.login-logo-img {
+  background-image: url('../assets/images/logo_lg.png');
   background-repeat: no-repeat;
   width: 396px;
   height: 132px;
@@ -98,13 +98,13 @@ button {
   margin-bottom: 20px;
 }
 
-.pw_box {
+.pw-box {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.pw_label {
+.pw-label {
   padding: 10px 0;
 }
 
@@ -123,7 +123,7 @@ button {
   cursor: pointer;
 }
 
-.social_login_container {
+.social-login-container {
   background-color: #e6f2ff;
   display: flex;
   justify-content: space-between;
@@ -132,32 +132,32 @@ button {
   border-radius: 8px;
 }
 
-.social_login_container p {
+.social-login-container p {
   font-weight: 500;
   font-size: 16px;
 }
 
-.sns_icon_box img {
+.sns-icon-box img {
   margin: 0 5px;
 }
 
-.link_join {
+.link-join {
   display: flex;
   justify-content: center;
   font-size: 14px;
   font-weight: 500;
 }
 
-.link_join a {
+.link-join a {
   color: var(--blue);
 }
 
 /* 에러 스타일 */
-.err_border {
+.err-border {
   border: 1px solid #ff0000;
 }
 
-.err_msg {
+.err-msg {
   color: #ff0000;
   margin-top: 0px;
 }
@@ -170,7 +170,7 @@ button {
     margin: 0;
   }
 
-  .logo_img {
+  .logo-img {
     background-image: url('../images/logo_md.png');
     background-repeat: no-repeat;
     width: 198px;
