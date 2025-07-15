@@ -5,9 +5,9 @@
 }
 
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
   font-weight: 400;
   font-style: normal;
 }
@@ -62,31 +62,31 @@ button {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px 200px;
 }
 
-.logo_img {
-  background-image: url("../images/logo_sm.png");
+.logo-img {
   background-repeat: no-repeat;
   width: 198px;
   height: 66px;
 }
 
-.login_btn {
+.login-btn {
   width: 128px;
   height: 48px;
   background-color: var(--blue);
   border: none;
   border-radius: 8px;
   font-size: 16px;
+  color: white;
+  font-weight: 600;
 }
 
-.login_btn:hover {
+.login-btn:hover {
   background-color: #1967d6;
 }
 
-.login_btn:active {
+.login-btn:active {
   background-color: #1251aa;
 }
 
@@ -359,7 +359,7 @@ button {
   }
 
   .logo_img {
-    background-image: url("../images/logo_typo.png");
+    background-image: url('../images/logo_typo.png');
     background-repeat: no-repeat;
     width: 103px;
     height: 51px;
