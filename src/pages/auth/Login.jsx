@@ -1,17 +1,20 @@
-import '../../style/login_style.css';
+import '../../styles/auth.css';
 import ic_kakao from '../../assets/icons/ic_kakao.png';
 import ic_google from '../../assets/icons/ic_google.png';
 import { Link } from 'react-router';
 
+/**
+ * 로그인 화면
+ */
 export default function Login() {
   return (
     <>
       <main>
         <div className="auth-main-container">
           <div className="container">
-            <div className="login-logo">
+            <div className="auth-logo">
               <Link to="/">
-                <div className="login-logo-img"></div>
+                <div className="auth-logo-img"></div>
               </Link>
             </div>
             <form id="form" className="form-box" action="">
@@ -43,7 +46,7 @@ export default function Login() {
                   <div id="eyes" className="eyes"></div>
                 </div>
               </div>
-              <button id="login-btn" className="auth-login-btn" type="button">
+              <button id="login-btn" className="auth-btn" type="button">
                 로그인
               </button>
             </form>
@@ -68,8 +71,8 @@ export default function Login() {
                 </a>
               </div>
             </div>
-            <p className="link-join">
-              판다마켓이 처음이신가요?&nbsp; <Link to="signup">회원가입</Link>
+            <p className="link-signup">
+              판다마켓이 처음이신가요?&nbsp; <Link to="/signup">회원가입</Link>
             </p>
           </div>
         </div>

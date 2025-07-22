@@ -1,4 +1,4 @@
-// import '../style/style.css';
+import '../styles/style.css';
 import home_top from '../assets/images/Img_home_top.png';
 import hot_item from '../assets/images/hot_item.png';
 import search_img from '../assets/images/search.png';
@@ -6,6 +6,9 @@ import register_img from '../assets/images/register.png';
 import home_bottom from '../assets/images/Img_home_bottom.png';
 import { Link } from 'react-router';
 
+/**
+ * 메인화면
+ */
 export default function Home() {
   return (
     <>

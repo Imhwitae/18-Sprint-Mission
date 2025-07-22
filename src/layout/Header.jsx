@@ -1,5 +1,8 @@
 import { Link, useNavigate } from 'react-router';
 
+/**
+ * 헤더
+ */
 export default function Header() {
   return (
     <>

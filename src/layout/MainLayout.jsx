@@ -1,4 +1,4 @@
-import '../style/style.css';
+import '../styles/style.css';
 import Header from './Header';
 import Footer from './Footer';
 import { Outlet } from 'react-router';

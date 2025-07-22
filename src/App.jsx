@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
-// import './style/style.css';
 import Login from './pages/auth/Login';
 import MainLayout from './layout/MainLayout';
+import Signup from './pages/auth/Signup';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
 
         {/* 로그인, 회원가입 */}
         <Route path="login" element={<Login />} />
-        {/* <Route path="signup" element={<SignUp />} /> */}
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </>
   );
