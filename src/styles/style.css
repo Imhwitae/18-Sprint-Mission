@@ -16,15 +16,6 @@ body {
   margin: 0;
 }
 
-header {
-  top: 0;
-  height: 70px;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  position: sticky;
-}
-
 a {
   text-decoration: none;
   color: white;
@@ -52,39 +43,6 @@ h2 {
 
 button {
   cursor: pointer;
-}
-
-.logo {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 200px;
-}
-
-.logo-img {
-  background-image: url('../assets/images/logo_sm.png');
-  background-repeat: no-repeat;
-  width: 198px;
-  height: 66px;
-}
-
-.header-login-btn {
-  width: 128px;
-  height: 48px;
-  background-color: var(--blue);
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  color: white;
-  font-weight: 600;
-}
-
-.login-btn:hover {
-  background-color: #1967d6;
-}
-
-.login-btn:active {
-  background-color: #1251aa;
 }
 
 .main-container {
@@ -179,44 +137,6 @@ button {
   padding-bottom: 100px;
 }
 
-.footer-container {
-  height: 160px;
-  background-color: var(--gray900);
-  display: flex;
-  justify-content: center;
-}
-
-.bottom-content-box {
-  width: 1110px;
-  padding-bottom: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.copyright {
-  color: var(--gray400);
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.footer-menu a {
-  color: var(--gray200);
-  font-size: 16px;
-  font-weight: 400;
-  padding: 15px;
-}
-
-.sns-menu ul {
-  padding: 0;
-}
-
-.sns-menu ul > li {
-  list-style: none;
-  display: inline-block;
-  padding: 5px;
-}
-
 /* tablet */
 @media (max-width: 1199px) {
   body {
@@ -237,10 +157,6 @@ button {
     font-weight: 500;
     font-size: 18px;
     color: var(--gray700);
-  }
-
-  .logo {
-    padding: 10px 24px;
   }
 
   .plan-card {
@@ -316,12 +232,6 @@ button {
   .bottom-slogan {
     text-align: center;
   }
-
-  .bottom-content-box {
-    width: 768px;
-    padding: 0px 0px 60px;
-    justify-content: space-around;
-  }
 }
 
 /* mobile */
@@ -362,17 +272,6 @@ button {
     height: 175px;
   }
 
-  .logo {
-    padding: 10px 16px;
-  }
-
-  .logo-img {
-    background-image: url('../assets/images/logo_typo.png');
-    background-repeat: no-repeat;
-    width: 103px;
-    height: 51px;
-  }
-
   .home-container {
     height: 480px;
   }
@@ -398,27 +297,6 @@ button {
 
   .bottom-slogan {
     padding-bottom: 0;
-  }
-
-  .bottom-content-box {
-    display: grid;
-    grid-template-columns: 180px 150px;
-    justify-content: center;
-    padding: 0px 10px 0px 20px;
-  }
-
-  .copyright {
-    grid-row: 2/3;
-    padding: 15px;
-  }
-
-  .privacy {
-    grid-row: 1/2;
-  }
-
-  .sns-menu {
-    grid-column: 2/3;
-    justify-items: center;
   }
 
   .only-mobile {
