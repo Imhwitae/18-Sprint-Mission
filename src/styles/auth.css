@@ -57,7 +57,7 @@ input::placeholder {
   height: 56px;
   border: none;
   border-radius: 40px;
-  margin: 0px 0px 20px 0;
+  margin: 20px 0px 20px 0;
   background-color: var(--gray400);
   color: white;
   font-size: 20px;
@@ -90,26 +90,16 @@ input::placeholder {
   height: 132px;
 }
 
-.email {
-  margin-bottom: 20px;
-}
-
-.nickname {
-  margin-bottom: 20px;
+.email-box,
+.nickname-box {
+  margin-top: 20px;
 }
 
 .pw-box {
   position: relative;
   display: flex;
   flex-direction: column;
-}
-
-/* .pw-label {
-  padding: 10px 0;
-} */
-
-.pw {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .auth-visible-icon {
@@ -152,13 +142,14 @@ input::placeholder {
 }
 
 /* 에러 스타일 */
-.err-border {
+.auth-err-border {
   border: 1px solid #ff0000;
 }
 
-.err-msg {
+.auth-err-msg {
   color: #ff0000;
-  margin-top: 0px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 /* mobile */

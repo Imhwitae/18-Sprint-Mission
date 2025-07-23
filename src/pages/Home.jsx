@@ -19,7 +19,7 @@ export default function Home() {
               일상의 모든 물건을 <br className="only-pc only-mobile" />
               거래해보세요
             </p>
-            <Link to="items">
+            <Link to="/items">
               <button className="large-btn">구경하러 가기</button>
             </Link>
           </div>
