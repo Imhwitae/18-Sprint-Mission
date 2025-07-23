@@ -91,10 +91,10 @@ export default function Login() {
                   />
                 </div>
               </div>
-              {errors.password && errors.password.type === 'required' && (
+              {errors.password?.type === 'required' && (
                 <p className="auth-err-msg">비밀번호를 입력해주세요</p>
               )}
-              {errors.password && errors.password.type === 'minLength' && (
+              {errors.password?.type === 'minLength' && (
                 <p className="auth-err-msg">
                   비밀번호를 8자 이상 입력해주세요.
                 </p>

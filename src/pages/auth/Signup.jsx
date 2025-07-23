@@ -94,10 +94,10 @@ export default function Signup() {
                   })}
                 />
               </div>
-              {errors.nickname && (
+              {errors.nickname?.type === 'required' && (
                 <p className="auth-err-msg">닉네임을 입력해주세요</p>
               )}
-              {errors.nickname && errors.nickname.type === 'maxLength' && (
+              {errors.nickname?.type === 'maxLength' && (
                 <p className="auth-err-msg">닉네임이 너무 깁니다.</p>
               )}
 
@@ -128,10 +128,10 @@ export default function Signup() {
                   />
                 </div>
               </div>
-              {errors.password && errors.password.type === 'required' && (
+              {errors.password?.type === 'required' && (
                 <p className="auth-err-msg">비밀번호를 입력해주세요</p>
               )}
-              {errors.password && errors.password.type === 'minLength' && (
+              {errors.password?.type === 'minLength' && (
                 <p className="auth-err-msg">
                   비밀번호를 8자 이상 입력해주세요.
                 </p>
@@ -150,6 +150,7 @@ export default function Signup() {
                   placeholder="비밀번호를 다시 한 번 입력해주세요"
                   {...register('confirmPassword', {
                     required: true,
+                    minLength: 8,
                     validate: () =>
                       getValues('password') === getValues('confirmPassword'),
                   })}
@@ -165,9 +166,15 @@ export default function Signup() {
                   />
                 </div>
               </div>
-              {errors.confirmPassword && (
-                <p className="auth-err-msg">비밀번호가 일치하지 않습니다.</p>
+              {errors.confirmPassword?.type === 'minLength' && (
+                <p className="auth-err-msg">
+                  비밀번호를 8자 이상 입력해주세요.
+                </p>
               )}
+              {errors.confirmPassword &&
+                errors.confirmPassword?.type === 'validate' && (
+                  <p className="auth-err-msg">비밀번호가 일치하지 않습니다.</p>
+                )}
             </div>
             <button className="auth-btn" type="submit">
               회원가입
