@@ -171,10 +171,9 @@ export default function Signup() {
                   비밀번호를 8자 이상 입력해주세요.
                 </p>
               )}
-              {errors.confirmPassword &&
-                errors.confirmPassword?.type === 'validate' && (
-                  <p className="auth-err-msg">비밀번호가 일치하지 않습니다.</p>
-                )}
+              {errors.confirmPassword?.type === 'validate' && (
+                <p className="auth-err-msg">비밀번호가 일치하지 않습니다.</p>
+              )}
             </div>
             <button className="auth-btn" type="submit">
               회원가입
