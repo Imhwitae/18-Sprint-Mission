@@ -23,6 +23,7 @@ header {
   display: flex;
   justify-content: center;
   position: sticky;
+  border-bottom: 1px solid #dfdfdf;
 }
 
 .header-link-text {
@@ -44,6 +45,31 @@ header {
   background-repeat: no-repeat;
   width: 198px;
   height: 66px;
+}
+
+.header-menu-box {
+  flex-grow: 4;
+  padding: 0;
+}
+
+.header-menu {
+  list-style: none;
+  align-items: center;
+  display: inline-block;
+}
+
+.header-menu-text {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--menu);
+}
+
+.active {
+  color: var(--blue);
+}
+
+.header-menu:first-child ~ li {
+  padding-left: 30px;
 }
 
 .header-login-btn {
@@ -83,5 +109,15 @@ header {
     background-repeat: no-repeat;
     width: 103px;
     height: 51px;
+    margin-right: 10px;
+  }
+
+  .header-menu:first-child ~ li {
+    padding-left: 10px;
+  }
+
+  .header-menu-text {
+    font-weight: 600;
+    font-size: 16px;
   }
 }

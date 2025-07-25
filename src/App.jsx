@@ -4,14 +4,15 @@ import Login from './pages/auth/Login';
 import MainLayout from './layout/MainLayout';
 import Signup from './pages/auth/Signup';
 import AuthLayout from './layout/AuthLayout';
+import ItemsLayout from './layout/ItemsLayout';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route element={<MainLayout />}>
-          {/* 메인 화면 */}
-          <Route index path="/" element={<Home />} />
+        {/* 메인 화면 */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
         </Route>
 
         {/* 로그인, 회원가입 */}
@@ -19,6 +20,9 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>
+
+        {/* 중고 마켓 */}
+        <Route path="items" element={<ItemsLayout />} />
       </Routes>
     </>
   );
