@@ -1,15 +1,12 @@
-import { Outlet } from 'react-router';
 import Header from './Header';
-import Items from '../pages/items/Items';
+import { Outlet } from 'react-router';
 
 export default function ItemsLayout() {
-  const menus = ['자유게시판', '중고마켓'];
-
   return (
     <>
-      <Header menus={menus} />
+      <Header />
       <main>
-        <Items />
+        <Outlet />
       </main>
     </>
   );
