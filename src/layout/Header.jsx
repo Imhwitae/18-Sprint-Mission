@@ -26,7 +26,9 @@ export default function Header() {
                 <NavLink
                   to="/community"
                   className={({ isActive }) =>
-                    isActive ? 'header-menu-text active' : 'header-menu-text'
+                    isActive
+                      ? 'header-menu-text header-active'
+                      : 'header-menu-text'
                   }
                 >
                   자유게시판
@@ -48,7 +50,9 @@ export default function Header() {
             {location.pathname !== '/' ? (
               <img src={ic_profile} alt="프로필_아이콘" />
             ) : (
-              <button className="header-login-btn">로그인</button>
+              <button className="header-login-btn btn-hover btn-active">
+                로그인
+              </button>
             )}
           </Link>
         </div>

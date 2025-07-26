@@ -54,7 +54,7 @@ header {
   color: var(--menu);
 }
 
-.active {
+.header-active {
   color: var(--blue);
 }
 
@@ -71,14 +71,6 @@ header {
   font-size: 16px;
   color: white;
   font-weight: 600;
-}
-
-.header-login-btn:hover {
-  background-color: #1967d6;
-}
-
-.header-login-btn:active {
-  background-color: #1251aa;
 }
 
 /* tablet */

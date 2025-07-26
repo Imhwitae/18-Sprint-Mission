@@ -17,6 +17,36 @@
   font-weight: 700;
 }
 
+.items-list-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.title-text {
+  flex-grow: 1;
+}
+
+.items-search {
+  width: 325px;
+  height: 42px;
+  background-color: var(--gray100);
+  border: none;
+  border-radius: 12px;
+  text-align: start;
+  font-size: 16px;
+  background-image: url('../../assets/icons/ic_search.svg');
+  background-repeat: no-repeat;
+  background-position: 15px;
+  padding: 0px 10px 0px 40px;
+}
+
+.items-add-btn {
+  margin: 0px 10px 0px 10px;
+  width: 133px;
+  height: 42px;
+}
+
 .product-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

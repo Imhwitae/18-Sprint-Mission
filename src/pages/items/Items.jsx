@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Product from '../../components/Product';
 import '../../styles/items/items.css';
 import { requestProductList } from '../../services/itemsApi';
+import ic_search from '../../assets/icons/ic_search.svg';
+import DropdownList from '../../components/DropdownList';
 
 export default function Items() {
   /**
@@ -56,6 +58,16 @@ export default function Items() {
           {!loading && (
             <Product products={bestProducts} width={282} height={282} />
           )}
+          <div className="items-list-container">
+            <p className="items-title title-text">전체 상품</p>
+            <input
+              type="text"
+              className="items-search"
+              placeholder="검색할 상품을 입력해주세요"
+            />
+            <button className="common-btn items-add-btn">상품 등록하기</button>
+            <DropdownList />
+          </div>
         </div>
       </div>
     </>

@@ -45,6 +45,15 @@ button {
   cursor: pointer;
 }
 
+.common-btn {
+  background-color: var(--blue);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  color: white;
+  font-weight: 600;
+}
+
 .main-container {
   display: flex;
   justify-content: center;
@@ -79,11 +88,11 @@ button {
   font-weight: 600;
 }
 
-.large-btn:hover {
+.btn-hover:hover {
   background-color: #1967d6;
 }
 
-.large-btn:active {
+.btn-active:active {
   background-color: #1251aa;
 }
 
