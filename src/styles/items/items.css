@@ -6,7 +6,6 @@
   display: flex;
   margin: 0 auto;
   width: 1200px;
-  height: 300px;
   justify-content: flex-start;
   flex-direction: column;
 }
@@ -18,8 +17,16 @@
 }
 
 .items-list-container {
-  margin-top: 20px;
+  width: 1200px;
+  margin: 20px auto;
   display: flex;
+  flex-direction: column;
+}
+
+.items-menus {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -50,6 +57,11 @@
 .product-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.product-all {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 35px;
 }
 
 .product-img {

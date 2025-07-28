@@ -1,9 +1,13 @@
 import ic_heart from '../assets/icons/ic_heart.svg';
 
-export default function Product({ products, width, height }) {
+export default function Product({ products, width, height, style }) {
   return (
     <>
-      <div className="product-container">
+      <div
+        className={
+          style ? `product-container product-${style}` : 'product-container'
+        }
+      >
         {products &&
           products.map((product) => {
             return (

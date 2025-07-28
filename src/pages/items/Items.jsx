@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 import Product from '../../components/Product';
 import '../../styles/items/items.css';
 import { requestProductList } from '../../services/itemsApi';
-import ic_search from '../../assets/icons/ic_search.svg';
 import DropdownList from '../../components/DropdownList';
 
 export default function Items() {
   /**
    * 전체 상품 목록
    */
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({});
 
   /**
    * 베스트 상풍 목록
@@ -33,7 +32,7 @@ export default function Items() {
       if (!productList) {
         throw new Error('상품목록 데이터를 불러오지 못했습니다.');
       }
-      setProducts(productList.list);
+      setProducts(productList);
 
       if (!bestList) {
         throw new Error('베스트 상품 목록 데이터를 불러오지 못했습니다.');
@@ -48,6 +47,7 @@ export default function Items() {
 
   useEffect(() => {
     getProducts();
+    console.log(products);
   }, []);
 
   return (
@@ -58,7 +58,9 @@ export default function Items() {
           {!loading && (
             <Product products={bestProducts} width={282} height={282} />
           )}
-          <div className="items-list-container">
+        </div>
+        <div className="items-list-container">
+          <div className="items-menus">
             <p className="items-title title-text">전체 상품</p>
             <input
               type="text"
@@ -68,6 +70,12 @@ export default function Items() {
             <button className="common-btn items-add-btn">상품 등록하기</button>
             <DropdownList />
           </div>
+          <Product
+            products={products.list}
+            width={212}
+            height={212}
+            style={'all'}
+          />
         </div>
       </div>
     </>
