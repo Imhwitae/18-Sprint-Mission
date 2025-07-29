@@ -1,5 +1,5 @@
 .items-container {
-  height: 1200px;
+  height: 100vh;
 }
 
 .items-best-container {
@@ -66,6 +66,14 @@
 
 .product-img {
   border-radius: 16px;
+  width: 282px;
+  height: 282px;
+}
+
+.product-img-all {
+  border-radius: 16px;
+  width: 212px;
+  height: 212px;
 }
 
 .product-name {

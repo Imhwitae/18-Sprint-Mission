@@ -1,6 +1,6 @@
 import ic_heart from '../assets/icons/ic_heart.svg';
 
-export default function Product({ products, width, height, style }) {
+export default function Product({ products, style }) {
   return (
     <>
       <div
@@ -13,9 +13,8 @@ export default function Product({ products, width, height, style }) {
             return (
               <div key={product.id}>
                 <img
-                  className="product-img"
+                  className={style ? `product-img-${style}` : 'product-img'}
                   src={product.images[0]}
-                  style={{ width: width, height: height }}
                 />
                 <p className="product-name">{product.name}</p>
                 <p className="product-price">

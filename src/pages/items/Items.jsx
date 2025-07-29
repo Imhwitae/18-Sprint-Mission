@@ -3,6 +3,7 @@ import Product from '../../components/Product';
 import '../../styles/items/items.css';
 import { requestProductList } from '../../services/itemsApi';
 import DropdownList from '../../components/DropdownList';
+import Pagination from '../../components/Pagination';
 
 export default function Items() {
   /**
@@ -14,6 +15,11 @@ export default function Items() {
    * 베스트 상풍 목록
    */
   const [bestProducts, setBestProducts] = useState([]);
+
+  /**
+   * 현재 페이지 번호
+   */
+  const [pageNum, setPageNum] = useState(1);
 
   /**
    * loading
@@ -55,9 +61,7 @@ export default function Items() {
       <div className="items-container">
         <div className="items-best-container">
           <p className="items-title">베스트 상품</p>
-          {!loading && (
-            <Product products={bestProducts} width={282} height={282} />
-          )}
+          {!loading && <Product products={bestProducts} />}
         </div>
         <div className="items-list-container">
           <div className="items-menus">
@@ -67,16 +71,19 @@ export default function Items() {
               className="items-search"
               placeholder="검색할 상품을 입력해주세요"
             />
-            <button className="common-btn items-add-btn">상품 등록하기</button>
+            <button className="btn-hover btn-active common-btn items-add-btn">
+              상품 등록하기
+            </button>
             <DropdownList />
           </div>
-          <Product
-            products={products.list}
-            width={212}
-            height={212}
-            style={'all'}
-          />
+          <Product products={products.list} style={'all'} />
         </div>
+        <Pagination
+          currentNum={pageNum}
+          // totalCount={products.totalCount}
+          totalCount={101}
+          setPageNum={setPageNum}
+        />
       </div>
     </>
   );

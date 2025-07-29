@@ -5,8 +5,8 @@
  */
 const requestProductList = async (
   orderBy = 'recent',
-  page = '1',
-  pageSize = 50
+  page = 1,
+  pageSize = 10
 ) => {
   const url = new URL('https://panda-market-api.vercel.app/products');
   url.searchParams.append('page', page);
