@@ -60,3 +60,23 @@
   border: none;
   border-radius: 12px;
 }
+
+@media (max-width: 768px) {
+  .dropdown-container {
+    width: 42px;
+    left: 91px;
+  }
+
+  .dropdown-btn {
+    width: 42px;
+    text-indent: -9999px;
+    background-image: url('../../assets/icons/ic_sort.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .dropdown-box {
+    left: 100%;
+    transform: translate(-100%);
+  }
+}

@@ -1,18 +1,34 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Product from '../../components/Product';
 import '../../styles/items/items.css';
 import { requestProductList } from '../../services/itemsApi';
 import DropdownList from '../../components/DropdownList';
 import Pagination from '../../components/Pagination';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 export default function Items() {
+  /**
+   * tablet 뷰포트인지 확인
+   */
+  const isTablet = useMediaQuery('(max-width: 1200px)');
+
+  /**
+   * mobile 뷰포트인지 확인
+   */
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  /**
+   * 뷰포트별로 표시할 아이템 개수
+   */
+  const [itemCounts, setItemsCounts] = useState({ best: 4, all: 10 });
+
   /**
    * 전체 상품 목록
    */
   const [products, setProducts] = useState({});
 
   /**
-   * 베스트 상풍 목록
+   * 베스트 상품 목록
    */
   const [bestProducts, setBestProducts] = useState([]);
 
@@ -27,41 +43,33 @@ export default function Items() {
   const [order, setOrder] = useState('recent');
 
   /**
-   * 페이지에 보여줄 컨텐츠의 개수
+   * isLoading
    */
-  // const [contentNum, setContentNum] = useState(10);
-
-  /**
-   * loading
-   */
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
 
   /**
    * 베스트 상품 목록을 가져온다.
    */
-  const getBestProducts = async () => {
+  const getBestProducts = async (count) => {
     try {
-      const { list: bestList } = await requestProductList('favorite', 1, 4);
+      const { list: bestList } = await requestProductList('favorite', 1, count);
       if (!bestList) {
         throw new Error('베스트 상품 목록 데이터를 불러오지 못했습니다.');
       }
       setBestProducts(bestList);
     } catch (e) {
       console.error(e);
+    } finally {
+      setisLoading(false);
     }
   };
 
   /**
    * 전체 상품 목록을 가져온다.
    */
-  const getProducts = async (order, page) => {
-    let pageSize =
-      products.totalCount - page * 10 < 10
-        ? products.totalCount - page * 10
-        : 10;
-
+  const getProducts = async (order, page, count) => {
     try {
-      const productList = await requestProductList(order, page, pageSize);
+      const productList = await requestProductList(order, page, count);
 
       if (!productList) {
         throw new Error('상품목록 데이터를 불러오지 못했습니다.');
@@ -69,24 +77,39 @@ export default function Items() {
       setProducts(productList);
     } catch (e) {
       console.error(e);
+    } finally {
+      setisLoading(false);
     }
   };
 
   useEffect(() => {
-    getProducts(order, pageNum);
-    setLoading(false);
-  }, [order, pageNum]);
+    /**
+     * 현재 뷰포트에 맞추어 count를 담을 객체
+     */
+    let currentItemCounts;
 
-  useEffect(() => {
-    getBestProducts();
-  }, []);
+    if (isMobile) {
+      // 모바일 뷰
+      currentItemCounts = { best: 1, all: 4 };
+    } else if (isTablet) {
+      // 태블릿 뷰
+      currentItemCounts = { best: 2, all: 6 };
+    } else {
+      // 데스크탑 뷰
+      currentItemCounts = { best: 4, all: 10 };
+    }
+
+    setItemsCounts(currentItemCounts);
+    getProducts(order, pageNum, currentItemCounts.all);
+    getBestProducts(currentItemCounts.best);
+  }, [isTablet, isMobile, order, pageNum]);
 
   return (
     <>
       <div className="items-container">
         <div className="items-best-container">
           <p className="items-title">베스트 상품</p>
-          <Product products={bestProducts} />
+          {!isLoading && <Product products={bestProducts} />}
         </div>
         <div className="items-list-container">
           <div className="items-menus">
@@ -101,13 +124,13 @@ export default function Items() {
             </button>
             <DropdownList changeOrder={setOrder} />
           </div>
-          <Product products={products.list} style={'all'} />
+          {!isLoading && <Product products={products.list} style={'all'} />}
         </div>
         <Pagination
           currentNum={pageNum}
           setPageNum={setPageNum}
           totalCount={products.totalCount}
-          // contentNum={contentNum}
+          // contentNum={media.allItmesCount}
         />
       </div>
     </>

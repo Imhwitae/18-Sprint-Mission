@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import '../styles/components/pagination.css';
 
-export default function Pagination({ currentNum, setPageNum, totalCount }) {
+export default function Pagination({
+  currentNum,
+  setPageNum,
+  totalCount,
+  contentNum,
+}) {
   /**
    * 페이지 번호를 표시할 배열
    */
@@ -16,7 +21,7 @@ export default function Pagination({ currentNum, setPageNum, totalCount }) {
     setPageNum(currentNum + 1);
 
     if (!(currentNum % 5)) {
-      if (totalCount - currentNum * 10 > 50) {
+      if (totalCount - currentNum * contentNum > 50) {
         setPageArr((prevState) => {
           return prevState.map((el) => el + 5);
         });

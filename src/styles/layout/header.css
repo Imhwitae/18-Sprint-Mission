@@ -75,14 +75,14 @@ header {
 }
 
 /* tablet */
-@media (max-width: 1199px) {
+@media (max-width: 1200px) {
   .logo {
     padding: 10px 24px;
   }
 }
 
 /* mobile */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .logo {
     padding: 10px 16px;
   }
