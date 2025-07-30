@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Product from '../../components/Product';
 import '../../styles/items/items.css';
 import { requestProductList } from '../../services/itemsApi';
@@ -22,38 +22,63 @@ export default function Items() {
   const [pageNum, setPageNum] = useState(1);
 
   /**
+   * 정렬 조건
+   */
+  const [order, setOrder] = useState('recent');
+
+  /**
+   * 페이지에 보여줄 컨텐츠의 개수
+   */
+  // const [contentNum, setContentNum] = useState(10);
+
+  /**
    * loading
    */
   const [loading, setLoading] = useState(true);
 
   /**
-   * 전체 상품 목록과 베스트 상품 목록을 가져온다.
+   * 베스트 상품 목록을 가져온다.
    */
-  const getProducts = async () => {
+  const getBestProducts = async () => {
     try {
-      setLoading(true);
-      const productList = await requestProductList();
       const { list: bestList } = await requestProductList('favorite', 1, 4);
-
-      if (!productList) {
-        throw new Error('상품목록 데이터를 불러오지 못했습니다.');
-      }
-      setProducts(productList);
-
       if (!bestList) {
         throw new Error('베스트 상품 목록 데이터를 불러오지 못했습니다.');
       }
       setBestProducts(bestList);
     } catch (e) {
       console.error(e);
-    } finally {
-      setLoading(false);
+    }
+  };
+
+  /**
+   * 전체 상품 목록을 가져온다.
+   */
+  const getProducts = async (order, page) => {
+    let pageSize =
+      products.totalCount - page * 10 < 10
+        ? products.totalCount - page * 10
+        : 10;
+
+    try {
+      const productList = await requestProductList(order, page, pageSize);
+
+      if (!productList) {
+        throw new Error('상품목록 데이터를 불러오지 못했습니다.');
+      }
+      setProducts(productList);
+    } catch (e) {
+      console.error(e);
     }
   };
 
   useEffect(() => {
-    getProducts();
-    console.log(products);
+    getProducts(order, pageNum);
+    setLoading(false);
+  }, [order, pageNum]);
+
+  useEffect(() => {
+    getBestProducts();
   }, []);
 
   return (
@@ -61,7 +86,7 @@ export default function Items() {
       <div className="items-container">
         <div className="items-best-container">
           <p className="items-title">베스트 상품</p>
-          {!loading && <Product products={bestProducts} />}
+          <Product products={bestProducts} />
         </div>
         <div className="items-list-container">
           <div className="items-menus">
@@ -74,15 +99,15 @@ export default function Items() {
             <button className="btn-hover btn-active common-btn items-add-btn">
               상품 등록하기
             </button>
-            <DropdownList />
+            <DropdownList changeOrder={setOrder} />
           </div>
           <Product products={products.list} style={'all'} />
         </div>
         <Pagination
           currentNum={pageNum}
-          // totalCount={products.totalCount}
-          totalCount={101}
           setPageNum={setPageNum}
+          totalCount={products.totalCount}
+          // contentNum={contentNum}
         />
       </div>
     </>

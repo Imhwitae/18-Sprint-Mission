@@ -1,7 +1,7 @@
 import '../styles/components/dropDownList.css';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
-export default function DropdownList() {
+function DropdownList({ changeOrder }) {
   /**
    * 드롭다운 리스트 메뉴
    */
@@ -24,8 +24,13 @@ export default function DropdownList() {
     setIsOpen(!isOpen);
   };
 
-  const onClickChangeOrder = (value) => {
-    setOrder(value);
+  /**
+   * 드롭다운 리스트의 정렬 조건을 변경한다.
+   * @param {string} value
+   */
+  const onClickChangeOrder = (menu) => {
+    setOrder(menu.name);
+    changeOrder(menu.value);
     onClickOpen();
   };
 
@@ -49,7 +54,7 @@ export default function DropdownList() {
                   <li
                     key={menu.name}
                     className="dropdown-li"
-                    onClick={() => onClickChangeOrder(menu.name)}
+                    onClick={() => onClickChangeOrder(menu)}
                   >
                     {menu.name}
                   </li>
@@ -61,3 +66,5 @@ export default function DropdownList() {
     </>
   );
 }
+
+export default memo(DropdownList);

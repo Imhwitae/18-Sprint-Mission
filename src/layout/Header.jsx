@@ -38,7 +38,9 @@ export default function Header() {
                 <NavLink
                   to="/items"
                   className={({ isActive }) =>
-                    isActive ? 'header-menu-text active' : 'header-menu-text'
+                    isActive
+                      ? 'header-menu-text header-active'
+                      : 'header-menu-text'
                   }
                 >
                   중고마켓

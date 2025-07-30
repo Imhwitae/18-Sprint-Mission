@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../styles/components/pagination.css';
 
 export default function Pagination({ currentNum, setPageNum, totalCount }) {
@@ -9,6 +9,7 @@ export default function Pagination({ currentNum, setPageNum, totalCount }) {
 
   /**
    * 화살표 모양으로 다음 페이지로 이동할 때 이벤트
+   * @param {event} e
    */
   const onClickMoveNext = (e) => {
     e.stopPropagation();
@@ -34,6 +35,7 @@ export default function Pagination({ currentNum, setPageNum, totalCount }) {
 
   /**
    * 화살표 모양으로 이전 페이지로 이동할 때 이벤트
+   * @param {event} e
    */
   const onClickMovePrev = (e) => {
     e.stopPropagation();
@@ -46,10 +48,6 @@ export default function Pagination({ currentNum, setPageNum, totalCount }) {
     }
   };
 
-  useEffect(() => {
-    console.log(pageArr);
-  }, [pageArr]);
-
   return (
     <>
       <div className="pgn-container">
@@ -60,7 +58,7 @@ export default function Pagination({ currentNum, setPageNum, totalCount }) {
           }}
         >
           {currentNum !== 1 ? (
-            <li className="pgn-prev-btn" onClick={(e) => onClickMovePrev(e)}>
+            <li className="pgn-prev-btn" onClick={onClickMovePrev}>
               &lt;
             </li>
           ) : (
@@ -94,7 +92,7 @@ export default function Pagination({ currentNum, setPageNum, totalCount }) {
               &gt;
             </li>
           ) : (
-            <li className="pgn-next-btn" onClick={(e) => onClickMoveNext(e)}>
+            <li className="pgn-next-btn" onClick={onClickMoveNext}>
               &gt;
             </li>
           )}

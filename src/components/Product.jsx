@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import ic_heart from '../assets/icons/ic_heart.svg';
 
-export default function Product({ products, style }) {
+function Product({ products, style }) {
   return (
     <>
       <div
@@ -35,3 +36,5 @@ export default function Product({ products, style }) {
     </>
   );
 }
+
+export default memo(Product);
