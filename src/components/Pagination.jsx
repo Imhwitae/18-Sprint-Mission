@@ -99,7 +99,7 @@ export default function Pagination({
               </li>
             );
           })}
-          {pageArr.length < 5 ? (
+          {totalPageCount === currentNum ? (
             <li
               className="pgn-next-btn pgn-disabled"
               onClick={(e) => e.stopPropagation()}
