@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../styles/components/pagination.css';
 
 export default function Pagination({
@@ -10,7 +10,40 @@ export default function Pagination({
   /**
    * 페이지 번호를 표시할 배열
    */
-  const [pageArr, setPageArr] = useState([1, 2, 3, 4, 5]);
+  const [pageArr, setPageArr] = useState([]);
+
+  /**
+   * 페이지의 총 개수
+   */
+  const totalPageCount = Math.ceil(totalCount / contentNum);
+
+  /**
+   * 보여질 페이지 그룹
+   */
+  const pageGroup = Math.ceil(currentNum / 5);
+
+  /**
+   * 페이지 그룹별 첫 번째 번호
+   */
+  const pageFirstNum = (pageGroup - 1) * 5 + 1;
+
+  /**
+   * 페이지 그룹별 마지막 번호
+   */
+  const pageLastNum =
+    pageGroup * 5 > totalPageCount ? totalPageCount : pageGroup * 5;
+
+  useEffect(() => {
+    let pages = [];
+
+    for (let i = pageFirstNum; i <= pageLastNum; i++) {
+      pages.push(i);
+    }
+
+    setPageArr(pages);
+
+    console.log(pages);
+  }, [pageGroup, contentNum]);
 
   /**
    * 화살표 모양으로 다음 페이지로 이동할 때 이벤트
@@ -19,23 +52,6 @@ export default function Pagination({
   const onClickMoveNext = (e) => {
     e.stopPropagation();
     setPageNum(currentNum + 1);
-
-    if (!(currentNum % 5)) {
-      if (totalCount - currentNum * contentNum > 50) {
-        setPageArr((prevState) => {
-          return prevState.map((el) => el + 5);
-        });
-      } else {
-        setPageArr((prevState) => {
-          return Array.from(
-            {
-              length: (totalCount - currentNum * 10) % 5,
-            },
-            (_, idx) => prevState[idx] + 5
-          );
-        });
-      }
-    }
   };
 
   /**
@@ -45,12 +61,6 @@ export default function Pagination({
   const onClickMovePrev = (e) => {
     e.stopPropagation();
     setPageNum(currentNum - 1);
-
-    if (currentNum % 5 === 1) {
-      setPageArr(
-        Array.from({ length: 5 }, (_, idx) => currentNum - 1 - (5 - (idx + 1)))
-      );
-    }
   };
 
   return (

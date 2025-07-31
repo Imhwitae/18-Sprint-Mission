@@ -130,7 +130,7 @@ export default function Items() {
           currentNum={pageNum}
           setPageNum={setPageNum}
           totalCount={products.totalCount}
-          // contentNum={media.allItmesCount}
+          contentNum={itemCounts.all}
         />
       </div>
     </>
