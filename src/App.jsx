@@ -6,6 +6,7 @@ import Signup from './pages/auth/Signup';
 import AuthLayout from './layout/AuthLayout';
 import ItemsLayout from './layout/ItemsLayout';
 import Items from './pages/items/Items';
+import AddItems from './pages/items/AddItems';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         {/* 중고 마켓 */}
         <Route element={<ItemsLayout />}>
           <Route path="items" element={<Items />} />
+          <Route path="additems" element={<AddItems />} />
         </Route>
       </Routes>
     </>

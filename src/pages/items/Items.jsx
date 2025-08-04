@@ -5,6 +5,7 @@ import { requestProductList } from '../../services/itemsApi';
 import DropdownList from '../../components/DropdownList';
 import Pagination from '../../components/Pagination';
 import useMediaQuery from '../../hooks/useMediaQuery';
+import { Link } from 'react-router';
 
 export default function Items() {
   /**
@@ -139,7 +140,7 @@ export default function Items() {
               placeholder="검색할 상품을 입력해주세요"
             />
             <button className="btn-hover btn-active common-btn items-add-btn">
-              상품 등록하기
+              <Link to="/additems">상품 등록하기</Link>
             </button>
             <DropdownList changeOrder={setOrder} />
           </div>
