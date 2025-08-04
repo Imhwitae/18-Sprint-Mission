@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Product from '../../components/Product';
 import '../../styles/items/items.css';
 import { requestProductList } from '../../services/itemsApi';
@@ -50,9 +50,15 @@ export default function Items() {
   /**
    * 베스트 상품 목록을 가져온다.
    */
-  const getBestProducts = async (count) => {
+  const getBestProducts = async (querys) => {
+    const bestQuery = {
+      page: 1,
+      pageSize: querys.best,
+      orderBy: 'favorite',
+    };
+
     try {
-      const { list: bestList } = await requestProductList('favorite', 1, count);
+      const { list: bestList } = await requestProductList(bestQuery);
       if (!bestList) {
         throw new Error('베스트 상품 목록 데이터를 불러오지 못했습니다.');
       }
@@ -67,10 +73,11 @@ export default function Items() {
   /**
    * 전체 상품 목록을 가져온다.
    */
-  const getProducts = async (order, page, count) => {
-    try {
-      const productList = await requestProductList(order, page, count);
+  const getProducts = async (querys) => {
+    querys.pageSize = querys.all;
 
+    try {
+      const productList = await requestProductList(querys);
       if (!productList) {
         throw new Error('상품목록 데이터를 불러오지 못했습니다.');
       }
@@ -86,22 +93,34 @@ export default function Items() {
     /**
      * 현재 뷰포트에 맞추어 count를 담을 객체
      */
+    let querys = {
+      orderBy: order,
+      page: pageNum,
+      best: 4,
+      all: 10,
+    };
     let currentItemCounts;
 
     if (isMobile) {
       // 모바일 뷰
       currentItemCounts = { best: 1, all: 4 };
+      querys.best = 1;
+      querys.all = 4;
     } else if (isTablet) {
       // 태블릿 뷰
       currentItemCounts = { best: 2, all: 6 };
+      querys.best = 2;
+      querys.all = 6;
     } else {
       // 데스크탑 뷰
       currentItemCounts = { best: 4, all: 10 };
+      querys.best = 4;
+      querys.all = 10;
     }
 
     setItemsCounts(currentItemCounts);
-    getProducts(order, pageNum, currentItemCounts.all);
-    getBestProducts(currentItemCounts.best);
+    getProducts(querys);
+    getBestProducts(querys);
   }, [isTablet, isMobile, order, pageNum]);
 
   return (
