@@ -20,7 +20,9 @@ export default function Home() {
               거래해보세요
             </p>
             <Link to="/items">
-              <button className="large-btn">구경하러 가기</button>
+              <button className="large-btn btn-hover btn-active">
+                구경하러 가기
+              </button>
             </Link>
           </div>
           <img className="main-img" src={home_top} alt="main_img" />
