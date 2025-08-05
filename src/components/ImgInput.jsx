@@ -1,0 +1,104 @@
+import { memo, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { palette } from '../styles/commonStyles';
+import icPlus from '../assets/icons/ic_plus.svg';
+import icX from '../assets/icons/ic_X.svg';
+
+/**
+ * input 태그를 감싸는 label
+ */
+const ImgUpload = styled.label`
+  width: 282px;
+  height: 282px;
+  color: ${palette.gray400};
+  background-color: ${palette.gray100};
+  background-image: url(${icPlus});
+  background-repeat: no-repeat;
+  background-position: center 90px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-block;
+  padding-top: 160px;
+  text-align: center;
+`;
+
+/**
+ * 이미지 미리보기를 표출
+ */
+const ProductPreviewImg = styled.img`
+  width: 282px;
+  height: 282px;
+  border-radius: 12px;
+  margin-left: 30px;
+  position: relative;
+`;
+
+/**
+ * 이미지를 삭제할 버튼
+ */
+const DeleteButton = styled.button`
+  width: 22px;
+  height: 24px;
+  border-radius: 999px;
+  border: none;
+  background-color: ${palette.gray400};
+  background-image: url(${icX});
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  z-index: 8888;
+  transform: translate(-150%, 50%);
+`;
+
+/**
+ * 이미지 등록 버튼을 표출하는 컴포넌트
+ * @returns
+ */
+const ImgInput = () => {
+  /**
+   * 미리보기 이미지 문자열을 담는다.
+   */
+  const [imgPreviews, setImgPreviews] = useState();
+  const inputRef = useRef();
+
+  /**
+   * 업로드한 이미지의 정보를 URL 문자열로 변환
+   * @param {event} e
+   */
+  const onChangeUploadImg = (e) => {
+    const previewImg = e.target.files[0];
+    const imgLink = URL.createObjectURL(previewImg);
+    setImgPreviews(imgLink);
+  };
+
+  const onClickDeleteImg = (e) => {
+    e.preventDefault();
+    inputRef.current.value = '';
+    setImgPreviews('');
+  };
+
+  return (
+    <>
+      <div>
+        <ImgUpload htmlFor="imgUpload">이미지 등록</ImgUpload>
+        <input
+          id="imgUpload"
+          type="file"
+          accept="image/*"
+          onChange={onChangeUploadImg}
+          ref={inputRef}
+          style={{ display: 'none' }}
+        />
+      </div>
+      {imgPreviews && (
+        <div>
+          <ProductPreviewImg src={imgPreviews} alt="이미지 미리보기" />
+          <DeleteButton onClick={onClickDeleteImg}></DeleteButton>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default memo(ImgInput);
