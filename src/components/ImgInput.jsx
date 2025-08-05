@@ -37,7 +37,7 @@ const ProductPreviewImg = styled.img`
 /**
  * 이미지를 삭제할 버튼
  */
-const DeleteButton = styled.button`
+export const DeleteButton = styled.button`
   width: 22px;
   height: 24px;
   border-radius: 999px;

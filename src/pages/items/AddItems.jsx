@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ImgInput from '../../components/ImgInput';
 import { palette } from '../../styles/commonStyles';
+import HashTag from '../../components/HashTag';
 
 const ItemContainer = styled.div`
   width: 1200px;
@@ -67,37 +68,43 @@ export default function AddItems() {
   return (
     <>
       <div>
-        <ItemTitleBox>
-          <PageTitle>상품 등록하기</PageTitle>
-          <SubmitButton>등록</SubmitButton>
-        </ItemTitleBox>
+        <form>
+          <ItemTitleBox>
+            <PageTitle>상품 등록하기</PageTitle>
+            <SubmitButton>등록</SubmitButton>
+          </ItemTitleBox>
 
-        <ItemContainer>
-          <PageTitle sub="true">상품 이미지</PageTitle>
-          <ItemImgBox>
-            <ImgInput />
-          </ItemImgBox>
-        </ItemContainer>
+          <ItemContainer>
+            <PageTitle sub="true">상품 이미지</PageTitle>
+            <ItemImgBox>
+              <ImgInput />
+            </ItemImgBox>
+          </ItemContainer>
 
-        <ItemContainer>
-          <PageTitle sub="true">상품명</PageTitle>
-          <TextInput placeholder="상품명을 입력해주세요" />
-        </ItemContainer>
+          <ItemContainer>
+            <PageTitle sub="true">상품명</PageTitle>
+            <TextInput placeholder="상품명을 입력해주세요" />
+          </ItemContainer>
 
-        <ItemContainer>
-          <PageTitle sub="true">상품 소개</PageTitle>
-          <TextInput wide="true" placeholder="상품 소개를 입력해주세요" />
-        </ItemContainer>
+          <ItemContainer>
+            <PageTitle sub="true">상품 소개</PageTitle>
+            <TextInput wide="true" placeholder="상품 소개를 입력해주세요" />
+          </ItemContainer>
 
-        <ItemContainer>
-          <PageTitle sub="true">판매 가격</PageTitle>
-          <TextInput placeholder="판매 가격을 입력해주세요" />
-        </ItemContainer>
+          <ItemContainer>
+            <PageTitle sub="true">판매 가격</PageTitle>
+            <TextInput placeholder="판매 가격을 입력해주세요" />
+          </ItemContainer>
 
-        <ItemContainer>
-          <PageTitle sub="true">태그</PageTitle>
-          <TextInput placeholder="태그를 입력해주세요" />
-        </ItemContainer>
+          <ItemContainer>
+            <PageTitle sub="true">태그</PageTitle>
+            <TextInput placeholder="태그를 입력해주세요" />
+            <div style={{ display: 'flex' }}>
+              <HashTag>#티셔츠</HashTag>
+              <HashTag>#티셔츠</HashTag>
+            </div>
+          </ItemContainer>
+        </form>
       </div>
     </>
   );
