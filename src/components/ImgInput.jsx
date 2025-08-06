@@ -1,8 +1,8 @@
-import { memo, useRef, useState } from 'react';
-import styled from 'styled-components';
-import { palette } from '../styles/commonStyles';
-import icPlus from '../assets/icons/ic_plus.svg';
-import icX from '../assets/icons/ic_X.svg';
+import { memo, useRef, useState } from "react";
+import styled from "styled-components";
+import { palette } from "../styles/commonStyles";
+import icPlus from "../assets/icons/ic_plus.svg";
+import icX from "../assets/icons/ic_X.svg";
 
 /**
  * input 태그를 감싸는 label
@@ -53,13 +53,12 @@ export const DeleteButton = styled.button`
 
 /**
  * 이미지 등록 버튼을 표출하는 컴포넌트
- * @returns
  */
-const ImgInput = () => {
+const ImgInput = ({ isUpload, setIsUpload }) => {
   /**
    * 미리보기 이미지 문자열을 담는다.
    */
-  const [imgPreviews, setImgPreviews] = useState();
+  const [imgPreviews, setImgPreviews] = useState("");
   const inputRef = useRef();
 
   /**
@@ -67,15 +66,25 @@ const ImgInput = () => {
    * @param {event} e
    */
   const onChangeUploadImg = (e) => {
+    if (imgPreviews !== "") {
+      setIsUpload(true);
+      return;
+    }
+
     const previewImg = e.target.files[0];
     const imgLink = URL.createObjectURL(previewImg);
     setImgPreviews(imgLink);
   };
 
+  /**
+   * 미리보기 이미지를 지우는 함수
+   * @param {Event} e
+   */
   const onClickDeleteImg = (e) => {
     e.preventDefault();
-    inputRef.current.value = '';
-    setImgPreviews('');
+    inputRef.current.value = "";
+    setImgPreviews("");
+    setIsUpload(false);
   };
 
   return (
@@ -88,7 +97,8 @@ const ImgInput = () => {
           accept="image/*"
           onChange={onChangeUploadImg}
           ref={inputRef}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
+          disabled={isUpload}
         />
       </div>
       {imgPreviews && (

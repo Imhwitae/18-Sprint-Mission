@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import ImgInput from '../../components/ImgInput';
-import { palette } from '../../styles/commonStyles';
-import HashTag from '../../components/HashTag';
+import styled from "styled-components";
+import ImgInput, { DeleteButton } from "../../components/ImgInput";
+import { ItemsTag, palette } from "../../styles/commonStyles";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useFieldArray, useForm } from "react-hook-form";
 
 const ItemContainer = styled.div`
   width: 1200px;
@@ -41,7 +42,8 @@ const SubmitButton = styled.button`
   height: 42px;
   border: none;
   border-radius: 8px;
-  background-color: #9ca3af;
+  background-color: ${({ isValid }) =>
+    isValid ? `${palette.blue}` : `${palette.gray400}`};
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -51,57 +53,174 @@ const SubmitButton = styled.button`
  * 상품 정보 입력 input
  */
 const TextInput = styled.input`
-  height: ${({ wide }) => (wide ? `282px` : `56px`)};
+  height: 56px;
   border: none;
   border-radius: 12px;
   background-color: ${palette.gray100};
   padding: 20px;
   font-size: 16px;
-  color: ${palette.gray400};
   position: relative;
-
-  ${({ wide }) =>
-    wide ? `&::placeholder {position: absolute; top: 20px;}` : ``}
+  &::placeholder {
+    color: ${palette.gray400};
+  }
 `;
 
+/**
+ * 상품 소개 입력 textarea
+ */
+const TextArea = styled.textarea`
+  height: 282px;
+  border: none;
+  border-radius: 12px;
+  background-color: ${palette.gray100};
+  padding: 20px;
+  font-size: 16px;
+  position: relative;
+  font-family: "Pretendard-Regular";
+  &::placeholder {
+    color: ${palette.gray400};
+  }
+`;
+
+const ItemsTagDeleteButton = styled(DeleteButton)`
+  position: relative;
+  z-index: 0;
+  transform: none;
+`;
+
+/**
+ * 상품 등록 페이지 컴포넌트
+ */
 export default function AddItems() {
+  /**
+   * 이미지가 등록되어있는지 여부를 확인하는 state
+   */
+  const [isUpload, setIsUpload] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { error, isValid },
+  } = useForm({
+    mode: "onChange",
+    defaultValues: { productName: "", description: "", price: "" },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "tags",
+    rules: {
+      required: true,
+    },
+  });
+
+  /**
+   * 입력받은 가격을 원화 형식으로 변환하는 함수
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   */
+  const onChangePrice = (e) => {
+    console.log(e.target.value);
+
+    let rawPrice = e.target.value.replace(/[^0-9]/g, "");
+
+    if (rawPrice === "") {
+      e.target.value = "";
+      return;
+    }
+
+    let formattedPrice = Number(rawPrice).toLocaleString("ko-KR");
+    e.target.value = formattedPrice;
+  };
+
+  /**
+   * Enter키를 입력으로 태그를 form에 등록하고 태그 입력 창을 비우는 만드는 함수
+   * @param {Event} e
+   */
+  const onKeyDownAppendTag = (e) => {
+    if (e.key === "Enter" && e.target.value !== "") {
+      append({ value: e.target.value });
+      e.target.value = "";
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault;
+  };
+
   return (
     <>
       <div>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <ItemTitleBox>
             <PageTitle>상품 등록하기</PageTitle>
-            <SubmitButton>등록</SubmitButton>
+            <SubmitButton isValid={isValid}>등록</SubmitButton>
           </ItemTitleBox>
 
           <ItemContainer>
             <PageTitle sub="true">상품 이미지</PageTitle>
             <ItemImgBox>
-              <ImgInput />
+              <ImgInput isUpload={isUpload} setIsUpload={setIsUpload} />
             </ItemImgBox>
+            {isUpload && (
+              <p style={{ color: "red" }}>
+                *이미지 등록은 최대 1개까지 가능합니다.
+              </p>
+            )}
           </ItemContainer>
 
           <ItemContainer>
             <PageTitle sub="true">상품명</PageTitle>
-            <TextInput placeholder="상품명을 입력해주세요" />
+            <TextInput
+              placeholder="상품명을 입력해주세요"
+              name="productName"
+              {...register("productName", {
+                required: true,
+              })}
+            />
           </ItemContainer>
 
           <ItemContainer>
             <PageTitle sub="true">상품 소개</PageTitle>
-            <TextInput wide="true" placeholder="상품 소개를 입력해주세요" />
+            <TextArea
+              placeholder="상품 소개를 입력해주세요"
+              name="description"
+              {...register("description", {
+                required: true,
+              })}
+            ></TextArea>
           </ItemContainer>
 
           <ItemContainer>
             <PageTitle sub="true">판매 가격</PageTitle>
-            <TextInput placeholder="판매 가격을 입력해주세요" />
+            <TextInput
+              placeholder="판매 가격을 입력해주세요"
+              name="price"
+              {...register("price", {
+                required: true,
+                onChange: (e) => onChangePrice(e),
+              })}
+            />
           </ItemContainer>
 
           <ItemContainer>
             <PageTitle sub="true">태그</PageTitle>
-            <TextInput placeholder="태그를 입력해주세요" />
-            <div style={{ display: 'flex' }}>
-              <HashTag>#티셔츠</HashTag>
-              <HashTag>#티셔츠</HashTag>
+            <TextInput
+              placeholder="태그를 입력해주세요"
+              name="tags"
+              onKeyDown={onKeyDownAppendTag}
+            />
+            <div style={{ display: "flex", margin: "10px 0px" }}>
+              {fields.map((tag, idx) => {
+                return (
+                  <ItemsTag key={tag.id}>
+                    {`#${tag.value}`}
+                    <ItemsTagDeleteButton
+                      onClick={() => remove(idx)}
+                    ></ItemsTagDeleteButton>
+                  </ItemsTag>
+                );
+              })}
             </div>
           </ItemContainer>
         </form>
