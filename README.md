@@ -109,8 +109,7 @@
 ### 주요 변경사항
 
 - 스프린트 미션 1부터 4까지의 내용을 React로 변경했습니다.
-  > form 변경 내용
-  > (React-Hook-form을 이용해 유효성 검사 해보기)[https://velog.io/@nudge0613/React-Hook-Form%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC-%ED%95%98%EA%B8%B0]
+  > form 변경 내용: [React-Hook-form을 이용해 유효성 검사 해보기](https://velog.io/@nudge0613/React-Hook-Form%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%B4-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%EC%9C%A0%ED%9A%A8%EC%84%B1-%EA%B2%80%EC%82%AC-%ED%95%98%EA%B8%B0)
 
 ### 스크린샷
 
