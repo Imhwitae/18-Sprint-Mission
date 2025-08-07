@@ -21,6 +21,13 @@ const ImgUpload = styled.label`
   display: inline-block;
   padding-top: 160px;
   text-align: center;
+
+  @media (max-width: 1200px) {
+    width: 168px;
+    height: 168px;
+    background-position: center 40px;
+    padding-top: 100px;
+  }
 `;
 
 /**
@@ -32,6 +39,12 @@ const ProductPreviewImg = styled.img`
   border-radius: 12px;
   margin-left: 30px;
   position: relative;
+
+  @media (max-width: 1200px) {
+    width: 168px;
+    height: 168px;
+    margin-left: 10px;
+  }
 `;
 
 /**
@@ -67,7 +80,6 @@ const ImgInput = ({ isUpload, setIsUpload }) => {
    */
   const onChangeUploadImg = (e) => {
     if (imgPreviews !== "") {
-      setIsUpload(true);
       return;
     }
 
@@ -87,6 +99,15 @@ const ImgInput = ({ isUpload, setIsUpload }) => {
     setIsUpload(false);
   };
 
+  /**
+   * 이미 등록된 이미지가 있을 때 업로드 상태를 true로 변경하는 함수
+   */
+  const onClickCheckImg = () => {
+    if (imgPreviews !== "") {
+      setIsUpload(true);
+    }
+  };
+
   return (
     <>
       <div>
@@ -95,6 +116,7 @@ const ImgInput = ({ isUpload, setIsUpload }) => {
           id="imgUpload"
           type="file"
           accept="image/*"
+          onClick={onClickCheckImg}
           onChange={onChangeUploadImg}
           ref={inputRef}
           style={{ display: "none" }}

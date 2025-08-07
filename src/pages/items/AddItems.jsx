@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ImgInput, { DeleteButton } from "../../components/ImgInput";
 import { ItemsTag, palette } from "../../styles/commonStyles";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 
 const ItemContainer = styled.div`
@@ -10,6 +10,14 @@ const ItemContainer = styled.div`
   flex-direction: column;
   margin: 0px auto;
   margin-bottom: 20px;
+
+  @media (max-width: 1200px) {
+    width: 696px;
+  }
+
+  @media (max-width: 768px) {
+    width: 346px;
+  }
 `;
 
 const ItemTitleBox = styled.div`
@@ -18,6 +26,14 @@ const ItemTitleBox = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 20px auto;
+
+  @media (max-width: 1200px) {
+    width: 696px;
+  }
+
+  @media (max-width: 768px) {
+    width: 346px;
+  }
 `;
 
 const ItemImgBox = styled(ItemTitleBox)`
@@ -210,7 +226,13 @@ export default function AddItems() {
               name="tags"
               onKeyDown={onKeyDownAppendTag}
             />
-            <div style={{ display: "flex", margin: "10px 0px" }}>
+            <div
+              style={{
+                display: "flex",
+                margin: "10px 0px",
+                overflow: "scroll",
+              }}
+            >
               {fields.map((tag, idx) => {
                 return (
                   <ItemsTag key={tag.id}>
