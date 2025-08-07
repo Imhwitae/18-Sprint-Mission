@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import Product from '../../components/Product';
-import '../../styles/items/items.css';
-import { requestProductList } from '../../services/itemsApi';
-import DropdownList from '../../components/DropdownList';
-import Pagination from '../../components/Pagination';
-import useMediaQuery from '../../hooks/useMediaQuery';
-import { Link } from 'react-router';
+import { useEffect, useState } from "react";
+import Product from "../../components/Product";
+import "../../styles/items/items.css";
+import { requestProductList } from "../../services/itemsApi";
+import DropdownList from "../../components/DropdownList";
+import Pagination from "../../components/Pagination";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import { Link } from "react-router";
 
 export default function Items() {
   /**
    * tablet 뷰포트인지 확인
    */
-  const isTablet = useMediaQuery('(max-width: 1200px)');
+  const isTablet = useMediaQuery("(max-width: 1200px)");
 
   /**
    * mobile 뷰포트인지 확인
    */
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   /**
    * 뷰포트별로 표시할 아이템 개수
@@ -41,12 +41,12 @@ export default function Items() {
   /**
    * 정렬 조건
    */
-  const [order, setOrder] = useState('recent');
+  const [order, setOrder] = useState("recent");
 
   /**
    * isLoading
    */
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   /**
    * 베스트 상품 목록을 가져온다.
@@ -55,19 +55,19 @@ export default function Items() {
     const bestQuery = {
       page: 1,
       pageSize: querys.best,
-      orderBy: 'favorite',
+      orderBy: "favorite",
     };
 
     try {
       const { list: bestList } = await requestProductList(bestQuery);
       if (!bestList) {
-        throw new Error('베스트 상품 목록 데이터를 불러오지 못했습니다.');
+        throw new Error("베스트 상품 목록 데이터를 불러오지 못했습니다.");
       }
       setBestProducts(bestList);
     } catch (e) {
       console.error(e);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -80,13 +80,13 @@ export default function Items() {
     try {
       const productList = await requestProductList(querys);
       if (!productList) {
-        throw new Error('상품목록 데이터를 불러오지 못했습니다.');
+        throw new Error("상품목록 데이터를 불러오지 못했습니다.");
       }
       setProducts(productList);
     } catch (e) {
       console.error(e);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -140,11 +140,11 @@ export default function Items() {
               placeholder="검색할 상품을 입력해주세요"
             />
             <button className="btn-hover btn-active common-btn items-add-btn">
-              <Link to="/additems">상품 등록하기</Link>
+              <Link to="/additem">상품 등록하기</Link>
             </button>
             <DropdownList changeOrder={setOrder} />
           </div>
-          {!isLoading && <Product products={products.list} style={'all'} />}
+          {!isLoading && <Product products={products.list} style={"all"} />}
         </div>
         <Pagination
           currentNum={pageNum}

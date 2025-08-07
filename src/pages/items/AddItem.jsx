@@ -107,7 +107,7 @@ const ItemsTagDeleteButton = styled(DeleteButton)`
 /**
  * 상품 등록 페이지 컴포넌트
  */
-export default function AddItems() {
+export default function AddItem() {
   /**
    * 이미지가 등록되어있는지 여부를 확인하는 state
    */
@@ -136,8 +136,6 @@ export default function AddItems() {
    * @param {React.ChangeEvent<HTMLInputElement>} e
    */
   const onChangePrice = (e) => {
-    console.log(e.target.value);
-
     let rawPrice = e.target.value.replace(/[^0-9]/g, "");
 
     if (rawPrice === "") {
@@ -151,17 +149,23 @@ export default function AddItems() {
 
   /**
    * Enter키를 입력으로 태그를 form에 등록하고 태그 입력 창을 비우는 만드는 함수
-   * @param {Event} e
+   * @param {KeyboardEvent} e
    */
   const onKeyDownAppendTag = (e) => {
-    if (e.key === "Enter" && e.target.value !== "") {
-      append({ value: e.target.value });
-      e.target.value = "";
+    if (e.nativeEvent.isComposing) return;
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+
+      if (e.target.value.trim() !== "") {
+        append({ value: e.target.value });
+        e.target.value = "";
+      }
     }
   };
 
   const onSubmit = (e) => {
-    e.preventDefault;
+    e.preventDefault();
   };
 
   return (
@@ -230,7 +234,8 @@ export default function AddItems() {
               style={{
                 display: "flex",
                 margin: "10px 0px",
-                overflow: "scroll",
+                flexWrap: "wrap",
+                rowGap: "10px",
               }}
             >
               {fields.map((tag, idx) => {
