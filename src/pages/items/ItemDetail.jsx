@@ -52,7 +52,6 @@ export default function ItemDetail() {
       if (!data) {
         throw new Error("상품 정보를 불러오지 못했습니다.");
       }
-      console.log(data);
 
       setProductDetail(data);
     } catch (e) {
@@ -122,9 +121,7 @@ export default function ItemDetail() {
             </div>
           </ProductTextBox>
         </ProductInfoBox>
-        <div style={{ marginBottom: "60px" }}>
-          <Inquiry />
-        </div>
+        <Inquiry id={productId} />
       </div>
     </>
   );
