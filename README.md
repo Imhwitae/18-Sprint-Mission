@@ -149,3 +149,5 @@
 
 - styled component를 사용해서 스타일링을 했는데 한 컴포넌트의 코드가 너무 길어지는 느낌입니다.
   스타일은 따로 빼놓는게 나을까요?
+
+Copyright 2025 코드잇 Inc. All rights reserved.

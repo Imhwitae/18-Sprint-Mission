@@ -16,6 +16,7 @@ function Product({ products, style }) {
               <Link
                 style={{ color: "black" }}
                 to={`/items/${product.id}`}
+                state={product}
                 key={product.id}
               >
                 <div>

@@ -30,3 +30,8 @@ export const ItemsTag = styled.div`
   padding: 15px;
   margin-right: 10px;
 `;
+
+export const ProfileImg = styled.img`
+  width: 40px;
+  height: 40px;
+`;
