@@ -110,4 +110,14 @@ export const InquirySubmitButton = styled.button`
   background-color: ${({ isActive }) =>
     isActive ? `${palette.blue}` : `${palette.gray400}`};
   float: right;
+
+  &:hover {
+    background-color: ${({ isActive }) =>
+      isActive ? `#1967d6` : `${palette.gray400}`};
+  }
+
+  &:active {
+    background-color: ${({ isActive }) =>
+      isActive ? `#1251aa` : `${palette.gray400}`};
+  }
 `;

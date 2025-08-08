@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import {
   Heart,
   HeartCount,
-  InquirySubmitButton,
-  InquiryTextArea,
   ProductDate,
   ProductImg,
   ProductInfoBox,
@@ -20,6 +18,7 @@ import { ItemsTag, palette, ProfileImg } from "../../styles/commonStyles";
 import icProfile from "../../assets/icons/ic_profile.svg";
 import icHeartInactive from "../../assets/icons/ic_heart_inactive_large.svg";
 import icHeartActive from "../../assets/icons/ic_heart_active_large.svg";
+import Inquiry from "../../components/Inquiry";
 
 export default function ItemDetail() {
   /**
@@ -27,6 +26,9 @@ export default function ItemDetail() {
    */
   const { productId } = useParams();
 
+  /**
+   * 목록에서 가져온 상품 정보
+   */
   const { state } = useLocation();
 
   /**
@@ -120,19 +122,8 @@ export default function ItemDetail() {
             </div>
           </ProductTextBox>
         </ProductInfoBox>
-        <div>
-          <p
-            style={{
-              color: `${palette.gray900}`,
-              fontWeight: "600",
-              fontSize: "16px",
-              margin: "40px 0px 10px",
-            }}
-          >
-            문의하기
-          </p>
-          <InquiryTextArea placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다." />
-          <InquirySubmitButton>등록</InquirySubmitButton>
+        <div style={{ marginBottom: "60px" }}>
+          <Inquiry />
         </div>
       </div>
     </>
