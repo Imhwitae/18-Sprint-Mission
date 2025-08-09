@@ -75,4 +75,18 @@ export const InquiryDate = styled.p`
   color: ${palette.gray400};
 `;
 
-export const BackButton = styled.button``;
+export const BackButton = styled.button`
+  width: 240px;
+  height: 48px;
+  border: none;
+  background-color: ${palette.blue};
+  color: white;
+  padding: 10px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+`;
