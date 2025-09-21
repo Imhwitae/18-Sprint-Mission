@@ -21,10 +21,11 @@ export interface SeparatedTodos {
 
 export interface TodoSectionProps {
   img: StaticImageData;
-  list: TodoData[];
+  list: TodoData[] | undefined;
   emptyImg: StaticImageData;
   imgAlt: string;
   emptyMsg: ReactNode;
+  changeTodo: Function;
 }
 
 export interface ActionState {

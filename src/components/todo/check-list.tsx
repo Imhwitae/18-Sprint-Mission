@@ -13,14 +13,17 @@ export default function CheckList({
   id,
   name,
   isCompleted,
+  changeTodo,
 }: {
   id: number;
   name: string;
   isCompleted: boolean;
+  changeTodo: Function;
 }) {
   const [task, setTask] = useState<TodoDetailData | null>(null);
   const { isLoading } = useCompleteTodo(id, task);
   const handleClickSetTask = () => {
+    changeTodo(id);
     setTask({ name, memo: "", imageUrl: "", isCompleted: !isCompleted });
   };
 

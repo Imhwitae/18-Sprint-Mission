@@ -39,7 +39,7 @@ export default function Taskbar() {
               ? `${styles.add_btn} ${styles.writing_task}`
               : styles.add_btn
           }
-          disabled={!!isPending}
+          disabled={isPending}
         >
           {task && isPending ? (
             <Spinner />
