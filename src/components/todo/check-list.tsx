@@ -20,7 +20,7 @@ export default function CheckList({
 }) {
   const [task, setTask] = useState<TodoDetailData | null>(null);
   const { isLoading } = useCompleteTodo(id, task);
-  const onClickSetTask = () => {
+  const handleClickSetTask = () => {
     setTask({ name, memo: "", imageUrl: "", isCompleted: !isCompleted });
   };
 
@@ -34,7 +34,7 @@ export default function CheckList({
     >
       <button
         type="button"
-        onClick={onClickSetTask}
+        onClick={handleClickSetTask}
         disabled={isLoading ? true : false}
       >
         {isLoading ? (
