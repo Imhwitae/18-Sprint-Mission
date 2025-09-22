@@ -7,8 +7,9 @@ import plus from "../../../public/plus.svg";
 import plusWhite from "../../../public/plus_white.svg";
 import addTaskAction from "@/actions/add-task.action";
 import Spinner from "../loading/spinner";
+import { TodoData } from "@/types";
 
-export default function Taskbar() {
+export default function Taskbar({ data }: { data: TodoData[] }) {
   const [task, setTask] = useState("");
   const [state, formAction, isPending] = useActionState(addTaskAction, {
     status: true,
