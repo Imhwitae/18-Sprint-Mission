@@ -10,10 +10,6 @@ import { useEffect } from "react";
 export default function Home() {
   const { data, isLoading, setData } = useGetAllTodo();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <div>
       <Taskbar data={data} setData={setData} />
