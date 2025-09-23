@@ -55,6 +55,10 @@ export default function TodoList({ data }: { data: TodoData[] }) {
   };
 
   useEffect(() => {
+    setAllTodoList(data);
+  }, [data]);
+
+  useEffect(() => {
     changeSeparatedTodos();
   }, [allTodoList]);
 

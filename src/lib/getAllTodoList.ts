@@ -6,12 +6,15 @@ export async function getAllTodoList() {
       next: { tags: ["todo"] },
     });
 
-    if (!response.ok) console.error(response.statusText);
+    if (!response.ok) {
+      alert("리스트를 불러오는데 실패했습니다.");
+      console.error(response.statusText);
+    }
 
     const todoList: TodoData[] = await response.json();
 
     return todoList;
   } catch (error) {
-    console.log(error);
+    throw new Error(`리스트를 불러오지 못했습니다. ${error}`);
   }
 }

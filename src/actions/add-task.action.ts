@@ -26,6 +26,6 @@ export default async function addTaskAction(
 
     return { status: true, error: "" };
   } catch (error) {
-    return { status: true, error: `할 일 등록에 실패했습니다. ${error}` };
+    return { status: false, error: `할 일 등록에 실패했습니다. ${error}` };
   }
 }

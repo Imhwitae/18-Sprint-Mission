@@ -8,14 +8,13 @@ export default function useGetAllTodo() {
   const [data, setData] = useState<TodoData[]>([]);
 
   const getTodos = async () => {
-    setIsLoading(true);
-
     try {
       const response = await getAllTodoList();
 
       if (!response) {
         alert("리스트를 불러오는데 실패했습니다.");
         setError(true);
+        return [];
       } else {
         setData(response);
       }
@@ -28,8 +27,9 @@ export default function useGetAllTodo() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getTodos();
   }, []);
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, setData };
 }
