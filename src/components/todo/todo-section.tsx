@@ -2,6 +2,7 @@ import { TodoSectionProps } from "@/types";
 import Image from "next/image";
 import CheckList from "./check-list";
 import styles from "./todo-section.module.css";
+import Link from "next/link";
 
 export default function TodoSection({
   img,
@@ -18,7 +19,15 @@ export default function TodoSection({
         <ul className={styles.custom_ul}>
           {list?.map((todo) => (
             <li key={todo.id}>
-              <CheckList {...todo} changeTodo={changeTodo} />
+              <Link
+                href={{
+                  pathname: `/items/${todo.id}`,
+                  query: { name: todo.name, isCompleted: todo.isCompleted },
+                }}
+                className={styles.link}
+              >
+                <CheckList {...todo} changeTodo={changeTodo} />
+              </Link>
             </li>
           ))}
         </ul>

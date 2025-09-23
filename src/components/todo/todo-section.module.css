@@ -25,3 +25,8 @@
 .loading_box {
   height: 150px;
 }
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
