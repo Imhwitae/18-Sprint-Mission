@@ -12,7 +12,9 @@
 
 .todo_detail_contents {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 24px;
   margin-top: 24px;
 }

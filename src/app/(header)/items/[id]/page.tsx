@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TodoDetailData } from "@/types";
+import UploadImg from "@/components/upload/upload-img";
 
 export default function Page() {
   const { id } = useParams();
@@ -25,15 +26,16 @@ export default function Page() {
   return (
     <div className={styles.todo_detail_container}>
       <div className={styles.todo_detail_background}>
-        <div className={styles.todo_detail_contents}>
-          <form action="">
-            <TodoDetailTitle
-              name={taskName ?? ""}
-              isCompleted={formData.isCompleted}
-              setFormData={setFormData}
-            />
-          </form>
-        </div>
+        <form action="" className={styles.todo_detail_contents}>
+          <TodoDetailTitle
+            name={taskName ?? ""}
+            isCompleted={formData.isCompleted}
+            setFormData={setFormData}
+          />
+          <div>
+            <UploadImg />
+          </div>
+        </form>
       </div>
     </div>
   );
